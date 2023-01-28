@@ -38,15 +38,20 @@ public class TotpService : IOtpService
         _length = length;
     }
 
-    public void CheckIfOtpChanged()
+    public bool CheckIfOtpChanged()
     {
+        bool otpChanged = false;
         int nextOtp = ComputeNextOtp();
 
         if (nextOtp != CurrentOtp)
         {
             PreviousOtp = CurrentOtp;
             CurrentOtp = nextOtp;
+
+            otpChanged = true;
         }
+
+        return otpChanged;
     }
     
     public int ComputeNextOtp()
