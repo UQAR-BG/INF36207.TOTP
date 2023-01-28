@@ -396,13 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-TP2/obj/Debug/net6.0-windows/TP2.GeneratedMSBuildEditorConfig.editorconfig
-TP2/obj/Debug/net6.0-windows/TP2.designer.runtimeconfig.json
-TP2/obj/Debug/net6.0-windows/TP2.assets.cache
-TP2/obj/Debug/net6.0-windows/TP2.assets.cache
-TP2/obj/Debug/net6.0-windows/TP2.designer.runtimeconfig.json
-TP2/obj/Debug/net6.0-windows/TP2.assets.cache
-*.bak_012d
-*.bak_011d
-*.bak_010d
-*.bak_009d
+
+INF36207.TOTP.Core/obj/project.nuget.cache
+INF36207.TOTP.Core/obj/project.assets.json
+INF36207.TOTP.Core/obj/Debug/net6.0/INF36207.TOTP.Core.csproj.CoreCompileInputs.cache
+INF36207.TOTP.Core/obj/Debug/net6.0/INF36207.TOTP.Core.GeneratedMSBuildEditorConfig.editorconfig
+INF36207.TOTP.Core/obj/INF36207.TOTP.Core.csproj.nuget.dgspec.json
+INF36207.TOTP.Core/obj/INF36207.TOTP.Core.csproj.nuget.g.props
+INF36207.TOTP.Core/obj/INF36207.TOTP.Core.csproj.nuget.g.targets
