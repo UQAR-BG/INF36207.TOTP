@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -41,7 +41,7 @@ namespace INF3602.TOTP.WinForm
             otpLifetime = config.GetValue<int>("TOTP:OTP_LIFETIME");
             otpLength = config.GetValue<int>("TOTP:OPT_LENGTH");
             secretKey = config.GetValue<string>("TOTP:SECRET_KEY") ?? "";
-
+            
             counterService = new CounterService(otpLifetime);
             hashService = new HashService(new ASCIIEncoding());
             otpService = new TotpService(counterService, hashService, secretKey, otpLength);
@@ -49,13 +49,15 @@ namespace INF3602.TOTP.WinForm
             // Subscribe to the event.
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            int tpm = otpService.CurrentOtp;
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             
             if (txtOTP.Text.Length != 6)
             {
-                MessageBox.Show("Accäs refusÅE!");
+                MessageBox.Show("Acc√®s refus√© !");
                 return;
             }
            
@@ -64,18 +66,18 @@ namespace INF3602.TOTP.WinForm
 
             if (!success)
             {
-                MessageBox.Show("Accäs refusÅE!");
+                MessageBox.Show("Acc√®s refus√© !");
                 return;
             }
 
             if (otpService.IsValid(otp))
             {
-                MessageBox.Show("Accäs ConfirmÅE!");
+                MessageBox.Show("Acc√®s Confirm√© !");
                 return;
             }  
             else
             {
-                MessageBox.Show("Accäs refusÅE!");
+                MessageBox.Show("Acc√®s refus√© !");
                 return;
             }
             

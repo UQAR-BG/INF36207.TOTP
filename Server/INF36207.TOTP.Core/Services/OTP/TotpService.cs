@@ -61,7 +61,7 @@ public class TotpService : IOtpService
 
     public bool IsValid(int otp)
     {
-        if(_currentOtp == otp)
+        if(CurrentOtp == otp)
            return true;
         else
             return false;
