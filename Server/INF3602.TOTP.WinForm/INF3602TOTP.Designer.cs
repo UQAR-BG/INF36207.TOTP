@@ -67,9 +67,8 @@
             this.lbTime.AutoSize = true;
             this.lbTime.Location = new System.Drawing.Point(517, 197);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(63, 15);
+            this.lbTime.Size = new System.Drawing.Size(0, 15);
             this.lbTime.TabIndex = 3;
-            this.lbTime.Text = "Timer left: ";
             // 
             // INF3602TOTP
             // 

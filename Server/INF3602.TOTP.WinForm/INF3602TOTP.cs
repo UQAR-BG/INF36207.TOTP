@@ -52,12 +52,10 @@ namespace INF3602.TOTP.WinForm
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            int i = otpService.CurrentOtp;
-            txtOTP.Text = i.ToString();
-
+            
             if (txtOTP.Text.Length != 6)
             {
-                MessageBox.Show("Accäs refusÇ !");
+                MessageBox.Show("Accäs refusÅE!");
                 return;
             }
            
@@ -66,18 +64,18 @@ namespace INF3602.TOTP.WinForm
 
             if (!success)
             {
-                MessageBox.Show("Accäs refusÇ !");
+                MessageBox.Show("Accäs refusÅE!");
                 return;
             }
 
             if (otpService.IsValid(otp))
             {
-                MessageBox.Show("Accäs ConfirmÇ !");
+                MessageBox.Show("Accäs ConfirmÅE!");
                 return;
             }  
             else
             {
-                MessageBox.Show("Accäs refusÇ !");
+                MessageBox.Show("Accäs refusÅE!");
                 return;
             }
             
@@ -92,7 +90,7 @@ namespace INF3602.TOTP.WinForm
                 lbLastOTP.Text = otpService.PreviousOtp.ToString();
                 
             }
-            lbTime.Text = "Timer left: " + counterService.SecondsBeforeNextOtp(otpLifetime).ToString();
+            //lbTime.Text = "Timer left: " + counterService.SecondsBeforeNextOtp(otpLifetime).ToString();
         }
     }
 }
