@@ -50,7 +50,7 @@ namespace INF3602.TOTP.WinForm
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            int tpm = otpService.CurrentOtp;
+           
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -85,10 +85,10 @@ namespace INF3602.TOTP.WinForm
         private void Timer_Tick(object sender, EventArgs e)
         {
 
-            if (counterService.SecondsBeforeNextOtp(otpLifetime) == 60)
+            if (otpService.CheckIfOtpChanged())
             {
-                otpService.CurrentOtp = otpService.ComputeNextOtp();
-                System.Threading.Thread.Sleep(1000);
+                //otpService.CurrentOtp = otpService.ComputeNextOtp();
+                //System.Threading.Thread.Sleep(1000);
                 lbLastOTP.Text = "Jeton précédant: " + otpService.PreviousOtp.ToString();
                 
             }

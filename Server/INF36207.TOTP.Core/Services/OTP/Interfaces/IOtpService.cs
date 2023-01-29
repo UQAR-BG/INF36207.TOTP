@@ -5,7 +5,7 @@ public interface IOtpService
     int CurrentOtp { get; set; }
     int PreviousOtp { get; set; }
 
-    void CheckIfOtpChanged();
+    bool CheckIfOtpChanged();
     int ComputeNextOtp();
     bool IsValid(int otp);
 }

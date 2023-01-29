@@ -51,8 +51,9 @@
             this.lbLastOTP.Location = new System.Drawing.Point(380, 276);
             this.lbLastOTP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLastOTP.Name = "lbLastOTP";
-            this.lbLastOTP.Size = new System.Drawing.Size(0, 15);
+            this.lbLastOTP.Size = new System.Drawing.Size(97, 15);
             this.lbLastOTP.TabIndex = 1;
+            this.lbLastOTP.Text = "Jeton précédant: ";
             // 
             // txtOTP
             // 
