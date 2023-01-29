@@ -89,7 +89,7 @@ namespace INF3602.TOTP.WinForm
             {
                 otpService.CurrentOtp = otpService.ComputeNextOtp();
                 System.Threading.Thread.Sleep(1000);
-                lbLastOTP.Text = otpService.PreviousOtp.ToString();
+                lbLastOTP.Text = "Jeton précédant: " + otpService.PreviousOtp.ToString();
                 
             }
             //lbTime.Text = "Timer left: " + counterService.SecondsBeforeNextOtp(otpLifetime).ToString();

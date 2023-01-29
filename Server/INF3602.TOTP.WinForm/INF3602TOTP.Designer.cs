@@ -81,7 +81,7 @@
             this.Controls.Add(this.btnLogin);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "INF3602TOTP";
-            this.Text = "INF3602OTP";
+            this.Text = "INF3602 - Application Serveur TOTP";
             this.ResumeLayout(false);
             this.PerformLayout();
 
