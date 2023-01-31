@@ -32,7 +32,7 @@ namespace INF36207.TOTP.Client
         private void ClientForm_Load(object sender, EventArgs e)
         {
             lblCountdown.Text = GetSecondsBeforeNextOtp();
-            lblJeton.Text = _otpService.CurrentOtp.ToString();
+            txtJeton.Text = _otpService.CurrentOtp;
 
             timerCountdown.Start();
         }
@@ -43,7 +43,7 @@ namespace INF36207.TOTP.Client
 
             if (_otpService.CheckIfOtpChanged())
             {
-                lblJeton.Text = _otpService.CurrentOtp.ToString();
+                txtJeton.Text = _otpService.CurrentOtp;
             }
         }
 
@@ -56,6 +56,12 @@ namespace INF36207.TOTP.Client
         {
             long seconds = _counterService.SecondsBeforeNextOtp(_otpLifetime);
             return _counterService.Format(seconds);
+        }
+
+        private void btnCopyToClipboard_Click(object sender, EventArgs e)
+        {
+            string otp = _otpService.CurrentOtp;
+            Clipboard.SetDataObject(otp);
         }
     }
 }

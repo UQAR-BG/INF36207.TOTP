@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.lblCountdown = new System.Windows.Forms.Label();
             this.lblMessageProchainToken = new System.Windows.Forms.Label();
-            this.lblJeton = new System.Windows.Forms.Label();
             this.timerCountdown = new System.Windows.Forms.Timer(this.components);
+            this.btnCopyToClipboard = new System.Windows.Forms.Button();
+            this.txtJeton = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblCountdown
@@ -54,27 +55,38 @@
             this.lblMessageProchainToken.TabIndex = 1;
             this.lblMessageProchainToken.Text = "Temps restant avant le prochain jeton:";
             // 
-            // lblJeton
-            // 
-            this.lblJeton.AutoSize = true;
-            this.lblJeton.Font = new System.Drawing.Font("Verdana", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblJeton.Location = new System.Drawing.Point(115, 338);
-            this.lblJeton.Name = "lblJeton";
-            this.lblJeton.Size = new System.Drawing.Size(176, 45);
-            this.lblJeton.TabIndex = 2;
-            this.lblJeton.Text = "000000";
-            // 
             // timerCountdown
             // 
             this.timerCountdown.Interval = 1000;
             this.timerCountdown.Tick += new System.EventHandler(this.timerCountdown_Tick);
+            // 
+            // btnCopyToClipboard
+            // 
+            this.btnCopyToClipboard.Location = new System.Drawing.Point(297, 339);
+            this.btnCopyToClipboard.Name = "btnCopyToClipboard";
+            this.btnCopyToClipboard.Size = new System.Drawing.Size(59, 52);
+            this.btnCopyToClipboard.TabIndex = 3;
+            this.btnCopyToClipboard.Text = "Copier";
+            this.btnCopyToClipboard.UseVisualStyleBackColor = true;
+            this.btnCopyToClipboard.Click += new System.EventHandler(this.btnCopyToClipboard_Click);
+            // 
+            // txtJeton
+            // 
+            this.txtJeton.Font = new System.Drawing.Font("Verdana", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtJeton.Location = new System.Drawing.Point(70, 339);
+            this.txtJeton.Name = "txtJeton";
+            this.txtJeton.ReadOnly = true;
+            this.txtJeton.Size = new System.Drawing.Size(231, 52);
+            this.txtJeton.TabIndex = 4;
+            this.txtJeton.Text = "00000000";
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 519);
-            this.Controls.Add(this.lblJeton);
+            this.Controls.Add(this.txtJeton);
+            this.Controls.Add(this.btnCopyToClipboard);
             this.Controls.Add(this.lblMessageProchainToken);
             this.Controls.Add(this.lblCountdown);
             this.Name = "ClientForm";
@@ -90,7 +102,8 @@
 
         private Label lblCountdown;
         private Label lblMessageProchainToken;
-        private Label lblJeton;
         private System.Windows.Forms.Timer timerCountdown;
+        private Button btnCopyToClipboard;
+        private TextBox txtJeton;
     }
 }

@@ -2,10 +2,10 @@ namespace INF36207.TOTP.Core.Services.OTP.Interfaces;
 
 public interface IOtpService
 {
-    int CurrentOtp { get; set; }
-    int PreviousOtp { get; set; }
+    string CurrentOtp { get; set; }
+    string PreviousOtp { get; set; }
 
     bool CheckIfOtpChanged();
-    int ComputeNextOtp();
+    string ComputeNextOtp();
     bool IsValid(int otp);
 }

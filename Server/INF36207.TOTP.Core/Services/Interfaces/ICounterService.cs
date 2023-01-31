@@ -6,4 +6,5 @@ public interface ICounterService
     long GetCounter(int otpLifetimeInSeconds);
 
     long SecondsBeforeNextOtp(int otpLifetimeInSeconds);
+    string Format(long secondsLeft);
 }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text;
 using INF36207.TOTP.Core.Services;
 using INF36207.TOTP.Core.Services.Interfaces;
 using INF36207.TOTP.Core.Services.OTP;
@@ -55,7 +46,7 @@ namespace INF3602.TOTP.WinForm
         private void btnLogin_Click(object sender, EventArgs e)
         {
             
-            if (txtOTP.Text.Length != 6)
+            if (txtOTP.Text.Length != otpLength)
             {
                 MessageBox.Show("Accès refusé !");
                 return;
@@ -87,12 +78,16 @@ namespace INF3602.TOTP.WinForm
 
             if (otpService.CheckIfOtpChanged())
             {
-                //otpService.CurrentOtp = otpService.ComputeNextOtp();
-                //System.Threading.Thread.Sleep(1000);
-                lbLastOTP.Text = "Jeton précédant: " + otpService.PreviousOtp.ToString();
-                
+                lbLastOTP.Text = "Jeton précédant: " + otpService.PreviousOtp;
             }
-            //lbTime.Text = "Timer left: " + counterService.SecondsBeforeNextOtp(otpLifetime).ToString();
+
+            lblCountdown.Text = GetSecondsBeforeNextOtp();
+        }
+
+        private string GetSecondsBeforeNextOtp()
+        {
+            long seconds = counterService.SecondsBeforeNextOtp(otpLifetime);
+            return counterService.Format(seconds);
         }
     }
 }

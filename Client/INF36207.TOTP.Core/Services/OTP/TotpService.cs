@@ -1,5 +1,6 @@
 using INF36207.TOTP.Core.Services.Interfaces;
 using INF36207.TOTP.Core.Services.OTP.Interfaces;
+using static System.Net.WebRequestMethods;
 
 namespace INF36207.TOTP.Core.Services.OTP;
 
@@ -8,27 +9,30 @@ public class TotpService : IOtpService
     private readonly ICounterService _counterService; 
     private readonly IHashService _hashService;
 
-    private int _currentOtp;
-    private int _previousOtp;
+    private string _currentOtp;
+    private string _previousOtp;
     private readonly int _length;
     private readonly string _secretKey;
 
-    public int CurrentOtp
+    public string CurrentOtp
     {
         get
         {
-            if (_currentOtp == 0)
-                _currentOtp = ComputeNextOtp();
+            if (string.IsNullOrEmpty(_currentOtp))
+                CurrentOtp = ComputeNextOtp();
             return _currentOtp;
         }
         set 
         {
             PreviousOtp = _currentOtp;
+
+            if (value.Length < _length)
+                value = value.PadRight(_length, '0');
             _currentOtp = value;
         }
     }
     
-    public int PreviousOtp { get; set; }
+    public string PreviousOtp { get; set; }
 
     public TotpService(ICounterService counterService, IHashService hashService, string key, int length)
     {
@@ -41,9 +45,9 @@ public class TotpService : IOtpService
     public bool CheckIfOtpChanged()
     {
         bool otpChanged = false;
-        int nextOtp = ComputeNextOtp();
+        string nextOtp = ComputeNextOtp();
 
-        if (nextOtp != CurrentOtp)
+        if (!nextOtp.Equals(CurrentOtp))
         {
             PreviousOtp = CurrentOtp;
             CurrentOtp = nextOtp;
@@ -54,22 +58,19 @@ public class TotpService : IOtpService
         return otpChanged;
     }
     
-    public int ComputeNextOtp()
+    public string ComputeNextOtp()
     {
         long counter = _counterService.GetCounter();
         string strCounter = counter.ToString();
 
         byte[] hmacHash = _hashService.ComputeHmacSha1(_secretKey, strCounter);
 
-        return ComputeOtp(hmacHash);
+        return ComputeOtp(hmacHash).ToString();
     }
 
     public bool IsValid(int otp)
     {
-        if(_currentOtp == otp)
-           return true;
-        else
-            return false;
+        return _currentOtp.Equals(otp.ToString());
     }
 
     private int ComputeOtp(byte[] hmacHash)

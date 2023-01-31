@@ -32,14 +32,16 @@
             this.lbLastOTP = new System.Windows.Forms.Label();
             this.txtOTP = new System.Windows.Forms.TextBox();
             this.lbTime = new System.Windows.Forms.Label();
+            this.lblCountdown = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(384, 224);
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.Location = new System.Drawing.Point(83, 254);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(117, 27);
+            this.btnLogin.Size = new System.Drawing.Size(169, 43);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Connexion";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -48,7 +50,7 @@
             // lbLastOTP
             // 
             this.lbLastOTP.AutoSize = true;
-            this.lbLastOTP.Location = new System.Drawing.Point(380, 276);
+            this.lbLastOTP.Location = new System.Drawing.Point(97, 136);
             this.lbLastOTP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLastOTP.Name = "lbLastOTP";
             this.lbLastOTP.Size = new System.Drawing.Size(97, 15);
@@ -57,25 +59,37 @@
             // 
             // txtOTP
             // 
-            this.txtOTP.Location = new System.Drawing.Point(384, 194);
+            this.txtOTP.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtOTP.Location = new System.Drawing.Point(83, 199);
             this.txtOTP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOTP.Name = "txtOTP";
-            this.txtOTP.Size = new System.Drawing.Size(116, 23);
+            this.txtOTP.Size = new System.Drawing.Size(169, 39);
             this.txtOTP.TabIndex = 2;
             // 
             // lbTime
             // 
             this.lbTime.AutoSize = true;
-            this.lbTime.Location = new System.Drawing.Point(517, 197);
+            this.lbTime.Location = new System.Drawing.Point(252, 127);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(0, 15);
             this.lbTime.TabIndex = 3;
+            // 
+            // lblCountdown
+            // 
+            this.lblCountdown.AutoSize = true;
+            this.lblCountdown.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCountdown.Location = new System.Drawing.Point(83, 62);
+            this.lblCountdown.Name = "lblCountdown";
+            this.lblCountdown.Size = new System.Drawing.Size(169, 59);
+            this.lblCountdown.TabIndex = 4;
+            this.lblCountdown.Text = "0 sec.";
             // 
             // INF3602TOTP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.ClientSize = new System.Drawing.Size(340, 353);
+            this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.lbTime);
             this.Controls.Add(this.txtOTP);
             this.Controls.Add(this.lbLastOTP);
@@ -94,5 +108,6 @@
         private System.Windows.Forms.Label lbLastOTP;
         private System.Windows.Forms.TextBox txtOTP;
         private Label lbTime;
+        private Label lblCountdown;
     }
 }

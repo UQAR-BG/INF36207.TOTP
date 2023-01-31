@@ -38,4 +38,9 @@ public class CounterService : ICounterService
     {
         return otpLifetimeInSeconds - DateTimeUtils.GetCurrentUnixTime() % otpLifetimeInSeconds;
     }
+
+    public string Format(long secondsLeft)
+    {
+        return $"{secondsLeft} sec.";
+    }
 }
