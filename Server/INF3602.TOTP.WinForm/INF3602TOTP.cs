@@ -16,6 +16,7 @@ namespace INF3602.TOTP.WinForm
         int otpLifetime;
         int otpLength;
         string secretKey;
+        int tentative = 5;
 
         public delegate void TickEventHandler(object sender, EventArgs e);
 
@@ -45,10 +46,10 @@ namespace INF3602.TOTP.WinForm
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
             if (txtOTP.Text.Length != otpLength)
             {
-                MessageBox.Show("Accès refusé !");
+                AccesError();
                 return;
             }
            
@@ -57,7 +58,7 @@ namespace INF3602.TOTP.WinForm
 
             if (!success)
             {
-                MessageBox.Show("Accès refusé !");
+                AccesError();
                 return;
             }
 
@@ -66,13 +67,23 @@ namespace INF3602.TOTP.WinForm
                 MessageBox.Show("Accès Confirmé !");
                 return;
             }  
+
             else
             {
-                MessageBox.Show("Accès refusé !");
+                AccesError();
                 return;
             }
             
         }
+
+        private void AccesError()
+        {
+            MessageBox.Show("Accès refusé !");
+            tentative--;
+            if (tentative <= 0)
+                System.Windows.Forms.Application.Exit();
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
 
