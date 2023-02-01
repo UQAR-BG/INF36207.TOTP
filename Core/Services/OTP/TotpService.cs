@@ -95,24 +95,50 @@ public class TotpService : IOtpService
     // Cet algorithme nécessite une explication étape par étape.
     private int ComputeOtp(byte[] hmacHash)
     {
-        // On prend le dernier octet du hash (hmacHash[^1]) et on applique un
+        // On prend le dernier octet du hash (hmacHash[^1]) et on applique le
         // masque binaire 0000 1111 afin de récupérer la valeur des derniers 4 bits.
-        // Cette valeur est garantie d'être inférieure 
+        // Cette valeur est garantie d'être inférieure à 15 puisque 4 bits à 1 = 15.
+        // Ainsi, il est certain, que l'on pourra manipuler 4 octets du tableau sans
+        // rencontrer une erreur out of bound.
         int offset = hmacHash[^1] & 0x0F;
 
+        // On prend un des octets du tableau et on lui applique le masque binaire
+        // 0111 1111 afin d'être certain d'avoir un bit à gauche à zéro. Sur cette valeur
+        // nécessairement inférieure, on effectue un décalage à gauche de 24 bits (<< 24).
+        // L'octet calculé à la ligne 109 est décalé vers le premier octet à gauche.
+        // Le masque 0x7F force le dernier bit à gauche à devenir un zéro. Ainsi, il est
+        // impossible d'obtenir une valeur de jeton négative puisque le dernier bit à gauche
+        // sera toujours zéro.
         int firstByte = hmacHash[offset++] & 0x7f;
         firstByte = firstByte << 24;
 
+        // On prend l'octet suivant du tableau et on lui applique le masque binaire
+        // 1111 1111 afin d'isoler notre octet dans le 32 bits. Sur cette valeur,
+        // on effectue un décalage à gauche de 16 bits (<< 16).
+        // L'octet calculé à la ligne 119 est décalé vers le deuxième octet à partir de la gauche.
         int secondByte = hmacHash[offset++] & 0xff;
         secondByte = secondByte << 16;
 
+        // On prend l'octet suivant du tableau et on lui applique le masque binaire
+        // 1111 1111 afin d'isoler notre octet dans le 32 bits. Sur cette valeur,
+        // on effectue un décalage à gauche de 8 bits (<< 8).
+        // L'octet calculé à la ligne 126 est décalé vers le troisième octet à partir de la gauche.
         int thirdByte = hmacHash[offset++] & 0xff;
         thirdByte = thirdByte << 8;
 
+        // On prend l'octet suivant du tableau et on lui applique le masque binaire
+        // 1111 1111 afin d'isoler notre octet dans le 32 bits. Cette valeur, dont les
+        // 24 derniers bits sont nécessairement à zéro peut demeurer telle quelle dans
+        // le premier octet à partir de la droite.
         int fourthByte = hmacHash[offset] & 0xff;
 
+        // On effctue un OU binaire entre les 4 valeurs afin de combiner les 4 octets
+        // sur un seul 32 bits et ainsi obtenir une valeur entière qui tient sur 32 bits.
         int otp = firstByte | secondByte | thirdByte | fourthByte;
 
+        // On retourne le reste de l'opération modulo entre notre valeur sur 32 bits et
+        // 10^8 (ici, 100 000 000). Le reste sera nécessairement inférieur à 100 000 000
+        // dans ce cas-ci et on aura donc un OTP sur 8 caractères.
         return otp % (int)Math.Pow(10, _length);
     }
 }
