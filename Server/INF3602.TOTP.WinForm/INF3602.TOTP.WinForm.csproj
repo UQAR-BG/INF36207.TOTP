@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\INF36207.TOTP.Core\INF36207.TOTP.Core.csproj" />
+    <ProjectReference Include="..\..\Core\INF36207.TOTP.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

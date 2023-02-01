@@ -16,9 +16,9 @@
 	    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\INF36207.TOTP.Core\INF36207.TOTP.Core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\INF36207.TOTP.Core.csproj" />
+    </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
