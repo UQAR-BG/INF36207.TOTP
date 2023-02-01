@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INF3602.TOTP.WinForm", "INF3602.TOTP.WinForm\INF3602.TOTP.WinForm.csproj", "{723648E2-0CE6-4DAE-AF9E-7E1DD1EF6A8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INF3602.TOTP.Server", "INF3602.TOTP.WinForm\INF3602.TOTP.Server.csproj", "{723648E2-0CE6-4DAE-AF9E-7E1DD1EF6A8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INF36207.TOTP.Core", "..\Core\INF36207.TOTP.Core.csproj", "{E4278CB5-5526-466F-BD10-A3B54634F492}"
 EndProject
