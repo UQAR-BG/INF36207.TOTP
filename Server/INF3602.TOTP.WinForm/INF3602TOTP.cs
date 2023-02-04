@@ -44,9 +44,15 @@ namespace INF3602.TOTP.WinForm
 
            
         }
+        /// <summary>
+        /// This function test the input OTP.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Return false if the OTP is not valid. It return true otherwise. 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            // Check OTP length
             if (txtOTP.Text.Length != otpLength)
             {
                 AccesError();
@@ -56,18 +62,19 @@ namespace INF3602.TOTP.WinForm
             int otp;
             bool success = int.TryParse(txtOTP.Text, out otp);
 
+            // We check if we can converte the string input to an integer. 
             if (!success)
             {
                 AccesError();
                 return;
             }
 
+            // Validate the OTP.
             if (otpService.IsValid(otp))
             {
                 MessageBox.Show("Accès Confirmé !");
                 return;
             }  
-
             else
             {
                 AccesError();
@@ -76,6 +83,10 @@ namespace INF3602.TOTP.WinForm
             
         }
 
+        /// <summary>
+        /// The function print the error message when the OTP is not valid.
+        /// It also remove a attempt from the attempts counter. 
+        /// </summary>
         private void AccesError()
         {
             MessageBox.Show("Accès refusé !");
@@ -84,17 +95,26 @@ namespace INF3602.TOTP.WinForm
                 System.Windows.Forms.Application.Exit();
         }
 
+        /// <summary>
+        /// Simple timer fonction to print the last valid OTP.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
+            lblCountdown.Text = GetSecondsBeforeNextOtp();
 
             if (otpService.CheckIfOtpChanged())
             {
                 lbLastOTP.Text = "Jeton précédant: " + otpService.PreviousOtp;
             }
-
-            lblCountdown.Text = GetSecondsBeforeNextOtp();
+ 
         }
 
+        /// <summary>
+        /// Print the time avalible before the next OTP. 
+        /// </summary>
+        /// <returns></returns>
         private string GetSecondsBeforeNextOtp()
         {
             long seconds = counterService.SecondsBeforeNextOtp(otpLifetime);
