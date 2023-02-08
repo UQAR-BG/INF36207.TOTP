@@ -57,7 +57,7 @@
             // 
             // timerCountdown
             // 
-            this.timerCountdown.Interval = 1000;
+            this.timerCountdown.Interval = 100;
             this.timerCountdown.Tick += new System.EventHandler(this.timerCountdown_Tick);
             // 
             // btnCopyToClipboard

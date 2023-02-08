@@ -27,6 +27,8 @@ namespace INF36207.TOTP.Client
             _counterService = new CounterService(_otpLifetime);
             _hashService = new HashService(new ASCIIEncoding());
             _otpService = new TotpService(_counterService, _hashService, _secretKey, _otpLength);
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
         }
 
         /// <summary>
